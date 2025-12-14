@@ -56,8 +56,11 @@ class _GroupRankingContentState extends State<GroupRankingContent> {
     );
     if (picked != null && mounted) {
       setState(() {
-        if (isStart) _startDate = picked;
-        else _endDate = picked;
+        if (isStart) {
+          _startDate = picked;
+        } else {
+          _endDate = picked;
+        }
       });
     }
   }

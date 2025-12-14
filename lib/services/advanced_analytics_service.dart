@@ -1103,7 +1103,7 @@ class AdvancedAnalyticsService {
     if (longestMsg != null) {
       final content = longestMsg['content'] as String;
       longestContent = content.length > 100
-          ? content.substring(0, 100) + '...'
+          ? '${content.substring(0, 100)}...'
           : content;
       longestMessageTime = DateTime.fromMillisecondsSinceEpoch(
         (longestMsg['createTime'] as int) * 1000,

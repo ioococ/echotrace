@@ -175,7 +175,7 @@ class AppState extends ChangeNotifier {
       try {
         await logger.info(
           'AppState',
-          '尝试重新连接数据库 (第${attempt + 1}/${retryCount}次)',
+          '尝试重新连接数据库 (第${attempt + 1}/$retryCount次)',
         );
 
         // 获取配置的数据库模式
@@ -219,7 +219,7 @@ class AppState extends ChangeNotifier {
 
     // 所有重试都失败
     _errorMessage =
-        '数据库连接失败（已重试${retryCount}次）: ${lastError?.toString() ?? "未知错误"}';
+        '数据库连接失败（已重试$retryCount次）: ${lastError?.toString() ?? "未知错误"}';
     await logger.error('AppState', _errorMessage!);
     _isLoading = false;
     notifyListeners();

@@ -53,8 +53,11 @@ class _GroupMediaStatsContentState extends State<GroupMediaStatsContent> {
     );
     if (picked != null && mounted) {
       setState(() {
-        if (isStart) _startDate = picked;
-        else _endDate = picked;
+        if (isStart) {
+          _startDate = picked;
+        } else {
+          _endDate = picked;
+        }
       });
     }
   }

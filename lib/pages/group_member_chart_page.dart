@@ -338,7 +338,7 @@ class _GroupMemberChartPageState extends State<GroupMemberChartPage> {
                       _isLoadingMembers
                           ? const CircularProgressIndicator()
                           : DropdownButtonFormField<GroupMember>(
-                              value: _selectedMember,
+                              initialValue: _selectedMember,
                               items: _members.map((member) => DropdownMenuItem(
                                 value: member,
                                 child: Text(member.displayName),

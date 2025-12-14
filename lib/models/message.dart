@@ -201,8 +201,9 @@ class Message {
         if (raw == null) return <int>[];
         if (raw is Uint8List) return raw.cast<int>();
         if (raw is List<int>) return raw;
-        if (raw is List)
+        if (raw is List) {
           return raw.map((e) => int.tryParse(e.toString()) ?? 0).toList();
+        }
         if (raw is String) {
           try {
             final decoded = jsonDecode(raw);

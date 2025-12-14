@@ -454,7 +454,7 @@ class _GroupChatAnalysisPageState extends State<GroupChatAnalysisPage>
   // --- 核心修改：更新功能内容展示区 ---
   Widget _buildFunctionContent() {
     return Container(
-      key: ValueKey('content_${_selectedGroup?.username}_${_selectedFunction}'),
+      key: ValueKey('content_${_selectedGroup?.username}_$_selectedFunction'),
       color: Colors.grey.shade50,
       child: Column(
         children: [

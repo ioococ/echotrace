@@ -417,12 +417,10 @@ class _DataManagementPageState extends State<DataManagementPage>
       }
 
       // 派生密钥（只计算一次）
-      if (_derivedKey == null) {
-        _derivedKey = await _deriveKeyOnce(
+      _derivedKey ??= await _deriveKeyOnce(
           key,
           pendingFiles.first.originalPath,
         );
-      }
 
       // 步骤1：强制清理所有页面状态
       if (mounted) {
@@ -1227,8 +1225,9 @@ class _DataManagementPageState extends State<DataManagementPage>
   String _formatFileSize(int bytes) {
     if (bytes < 1024) return '$bytes B';
     if (bytes < 1024 * 1024) return '${(bytes / 1024).toStringAsFixed(1)} KB';
-    if (bytes < 1024 * 1024 * 1024)
+    if (bytes < 1024 * 1024 * 1024) {
       return '${(bytes / (1024 * 1024)).toStringAsFixed(1)} MB';
+    }
     return '${(bytes / (1024 * 1024 * 1024)).toStringAsFixed(1)} GB';
   }
 
@@ -2268,16 +2267,16 @@ class _DataManagementPageState extends State<DataManagementPage>
                             (_isDecrypting && file.decryptProgress == 0))
                         ? null
                         : () => _decryptSingle(file),
-                    child: Text(
-                      _isDecrypting && file.decryptProgress > 0
-                          ? '${(file.decryptProgress * 100).toStringAsFixed(0)}%'
-                          : '解密',
-                    ),
                     style: OutlinedButton.styleFrom(
                       padding: const EdgeInsets.symmetric(
                         horizontal: 16,
                         vertical: 8,
                       ),
+                    ),
+                    child: Text(
+                      _isDecrypting && file.decryptProgress > 0
+                          ? '${(file.decryptProgress * 100).toStringAsFixed(0)}%'
+                          : '解密',
                     ),
                   ),
               ],
